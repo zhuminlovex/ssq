@@ -109,11 +109,15 @@ class Ssq
      * 发送并且创建合同
      * @param $receivers
      */
-    public function sendContract($placeHolders, $account = '', $templateId = '', $roleId = '')
+    public function sendContract($placeHolders, $account = '', $templateId = '', $roleId = '', $userAccount = '', $userName = '')
     {
         $postData = [
             'placeHolders' => $placeHolders,
             'templateId' => $templateId,
+            'userInfo' => [
+                'userName' => $userName,
+                'userAccount' => $userAccount,
+            ],
             'roles' => [
                 [
                     'enterpriseName' => $this->companyName,
@@ -130,7 +134,7 @@ class Ssq
             'pushUrl' => $this->pushUrl
         ];
 
-        $path = "/api/templates/send-contracts-sync-v2";
+        $path = "/api/templates/send-contracts-sync";
         $method = "POST";
         $response = $this->httpClient->request($path, $method, $postData);
         return $response;
