@@ -32,7 +32,6 @@ class BestSignHttpClient
     public function request($uri, $method, $postData, $urlParams = NULL)
     {
         $response = $this->_handleRequest($uri, $method, $postData, $urlParams);
-        $response = $this->_handleResponse($response);
         return $response;
     }
 
@@ -56,28 +55,6 @@ class BestSignHttpClient
         $response = HttpSender::sendRequest($requestUrl, $method, $postData, $headers);
         return $response;
     }
-
-    private function _handleResponse($response)
-    {
-        $code = $response->code ?? null;
-        if (is_null($code))
-        {
-            return $response;
-        }
-        else {
-            if ($code == "0")
-            {
-                $data = $response->data;
-
-                return $data;
-            }
-            else
-            {
-                return  is_array($response->data) ?implode(",", $response->data).$response->message."；错误代码：".$code : $response->message."；错误代码：".$code;
-            }
-        }
-    }
-
 
     private function _getUri($uri, $urlParams)
     {
