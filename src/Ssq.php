@@ -130,7 +130,7 @@ class Ssq
             'pushUrl' => $this->pushUrl
         ];
 
-        $path = "/api/templates/send-contracts-sync";
+        $path = "/api/templates/send-contracts-sync-v2";
         $method = "POST";
         $response = $this->httpClient->request($path, $method, $postData);
         return $response;
