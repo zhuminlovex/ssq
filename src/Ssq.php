@@ -109,15 +109,11 @@ class Ssq
      * 发送并且创建合同
      * @param $receivers
      */
-    public function sendContract($placeHolders, $account = '', $templateId = '', $roleId = '', $userAccount = '', $userName = '')
+    public function sendContract($placeHolders, $account = '', $templateId = '', $roleId = '')
     {
         $postData = [
             'placeHolders' => $placeHolders,
             'templateId' => $templateId,
-            'userInfo' => [
-                'userName' => $userName,
-                'userAccount' => $userAccount,
-            ],
             'roles' => [
                 [
                     'enterpriseName' => $this->companyName,
