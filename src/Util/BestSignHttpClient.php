@@ -59,13 +59,21 @@ class BestSignHttpClient
 
     private function _handleResponse($response)
     {
-        $code = $response->code ?? null;
+        $code = $response->code;
         if (is_null($code))
         {
             return $response;
         }
         else {
-            return $response->data;
+            if ($code == "0")
+            {
+                $data = $response->data;
+                return $data;
+            }
+            else 
+            {
+                return $response;
+            }
         }
     }
 
